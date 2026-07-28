@@ -1,14 +1,12 @@
 package ng.ourChemo.services;
 
 import ng.ourChemo.data.models.Staff;
-import ng.ourChemo.data.repositories.SaleRepository;
-import ng.ourChemo.data.repositories.StaffRepository;
 import ng.ourChemo.data.repositories.StaffRepositoryImpl;
 import ng.ourChemo.dtos.requests.LoginRequestDto;
 import ng.ourChemo.dtos.requests.LogoutRequestDto;
 import ng.ourChemo.dtos.requests.RegisterStaffRequestDto;
 import ng.ourChemo.dtos.responses.LoginStaffResponseDto;
-import ng.ourChemo.dtos.responses.LogoutOutStaffResponseDto;
+import ng.ourChemo.dtos.responses.LogoutStaffResponseDto;
 import ng.ourChemo.dtos.responses.RegisterStaffResponseDto;
 
 import java.util.UUID;
@@ -60,7 +58,18 @@ public class StaffRegistrationServiceImpl implements StaffRegisterationService{
     }
 
     @Override
-    public LogoutOutStaffResponseDto logOutStaff(LogoutRequestDto request) {
-        return null;
+    public LogoutStaffResponseDto logOutStaff(LogoutRequestDto request) {
+        Staff existingStaff = staffRepository.findById(request.getId());
+        if (existingStaff == null) {
+            throw new IllegalArgumentException("Staff member not found");
+        }
+
+        LogoutStaffResponseDto responseDto = new LogoutStaffResponseDto();
+        responseDto.setMessage("Logout Successful");
+
+        return responseDto;
     }
 }
+
+
+

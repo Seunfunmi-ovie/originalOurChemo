@@ -3,24 +3,23 @@ package ng.ourChemo.services;
 import ng.ourChemo.data.repositories.StaffRepository;
 import ng.ourChemo.data.repositories.StaffRepositoryImpl;
 import ng.ourChemo.dtos.requests.LoginRequestDto;
+import ng.ourChemo.dtos.requests.LogoutRequestDto;
 import ng.ourChemo.dtos.requests.RegisterStaffRequestDto;
 import ng.ourChemo.dtos.responses.LoginStaffResponseDto;
+import ng.ourChemo.dtos.responses.LogoutStaffResponseDto;
 import ng.ourChemo.dtos.responses.RegisterStaffResponseDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class StaffRegisterationServiceTest{
+class StaffRegisterationServiceTest {
 
     private final StaffRepository staffRepository = new StaffRepositoryImpl();
     private final StaffRegisterationService staffRegistrationService = new StaffRegistrationServiceImpl();
 
-
-
     @BeforeEach
     void setUp() {
-
         staffRepository.deleteAll();
     }
 
@@ -67,20 +66,24 @@ class StaffRegisterationServiceTest{
 
     @Test
     public void testThatStaffCanLogin() {
-        LoginRequestDto requestDto = new LoginRequestDto();
+        RegisterStaffRequestDto registerRequest = new RegisterStaffRequestDto();
+        registerRequest.setName("Seunfunmi");
+        registerRequest.setUserName("Seunfunmi");
+        registerRequest.setPassword("Olasunkanmi");
+        registerRequest.setEmail("oluwaseunpu@gmail.com");
+        RegisterStaffResponseDto registerResponse = staffRegistrationService.registerStaff(registerRequest);
 
-        requestDto.setName("Seunfunmi");
-        requestDto.setPassword("Anuoluwa");
+        LoginRequestDto requestDto = new LoginRequestDto();
+        requestDto.setId(registerResponse.getId());
+        requestDto.setPassword("Olasunkanmi");
 
         LoginStaffResponseDto responseDto = staffRegistrationService.logInStaff(requestDto);
 
-        assertEquals(requestDto.getName(), responseDto.getName());
         assertEquals("Login Successful", responseDto.getMessage());
-
     }
 
     @Test
-    public void testThatStaffCanRegisterAndLogin(){
+    public void testThatStaffCanRegisterAndLogin() {
         RegisterStaffRequestDto request = new RegisterStaffRequestDto();
         request.setName("Seunfunmi");
         request.setUserName("Seunfunmi");
@@ -93,17 +96,29 @@ class StaffRegisterationServiceTest{
         assertEquals("Registration successful", responseDto.getMessage());
 
         LoginRequestDto requestDto = new LoginRequestDto();
-
-        requestDto.setName("Seunfunmi");
-        requestDto.setPassword("Anuoluwa");
+        requestDto.setId(responseDto.getId());
+        requestDto.setPassword("Olasunkanmi");
 
         LoginStaffResponseDto responseDto1 = staffRegistrationService.logInStaff(requestDto);
 
-        assertEquals(requestDto.getName(), responseDto1.getName());
-        assertEquals("Registration successful", responseDto.getMessage());
-
+        assertEquals("Login Successful", responseDto1.getMessage());
     }
 
+    @Test
+    public void testThatStaffCanLoggOut() {
+        RegisterStaffRequestDto registerRequest = new RegisterStaffRequestDto();
+        registerRequest.setName("Seunfunmi");
+        registerRequest.setUserName("Seunfunmi");
+        registerRequest.setPassword("Olasunkanmi");
+        registerRequest.setEmail("oluwaseunpu@gmail.com");
+        RegisterStaffResponseDto registerResponse = staffRegistrationService.registerStaff(registerRequest);
 
+        LogoutRequestDto requestDto = new LogoutRequestDto();
+        requestDto.setId(registerResponse.getId());
+
+        LogoutStaffResponseDto responseDto = staffRegistrationService.logOutStaff(requestDto);
+
+        assertNotNull(responseDto);
+        assertEquals("Logout Successful", responseDto.getMessage());
     }
-
+}
