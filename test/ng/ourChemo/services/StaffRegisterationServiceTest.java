@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class StaffRegisterationServiceTest {
+class StaffRegisterationServiceTest{
 
     private final StaffRepository staffRepository = new StaffRepositoryImpl();
     private final StaffRegisterationService staffRegistrationService = new StaffRegistrationServiceImpl();
