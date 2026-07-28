@@ -81,8 +81,29 @@ class StaffRegisterationServiceTest {
 
     @Test
     public void testThatStaffCanRegisterAndLogin(){
+        RegisterStaffRequestDto request = new RegisterStaffRequestDto();
+        request.setName("Seunfunmi");
+        request.setUserName("Seunfunmi");
+        request.setPassword("Olasunkanmi");
+        request.setEmail("oluwaseunpu@gmail.com");
+
+        RegisterStaffResponseDto responseDto = staffRegistrationService.registerStaff(request);
+
+        assertEquals(request.getName(), responseDto.getUserName());
+        assertEquals("Registration successful", responseDto.getMessage());
+
+        LoginRequestDto requestDto = new LoginRequestDto();
+
+        requestDto.setName("Seunfunmi");
+        requestDto.setPassword("Anuoluwa");
+
+        LoginStaffResponseDto responseDto1 = staffRegistrationService.logInStaff(requestDto);
+
+        assertEquals(requestDto.getName(), responseDto1.getName());
+        assertEquals("Registration successful", responseDto.getMessage());
+
+    }
 
 
     }
 
-}
