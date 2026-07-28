@@ -9,7 +9,7 @@ public class Sale {
 
     private LocalDateTime dateTime;
 
-    private User user;
+    private Staff user;
 
     private List<SaleItem> items;
 

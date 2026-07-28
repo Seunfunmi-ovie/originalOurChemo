@@ -1,10 +1,11 @@
 package ng.ourChemo.data.models;
 
-public class User {
+public class Staff {
         private String name;
         private String username;
         private String password;
         private String id;
+        private String email;
 
 
 
@@ -28,7 +29,7 @@ public class User {
         return password;
     }
 
-    public void setPassord(String passord) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
@@ -38,5 +39,13 @@ public class User {
 
     public void setId(String id){
             this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

@@ -1,18 +1,18 @@
 package ng.ourChemo.data.repositories;
 
-import ng.ourChemo.data.models.User;
+import ng.ourChemo.data.models.Staff;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserRepositoryImpl  implements  UserRepository{
+public class StaffRepositoryImpl implements StaffRepository {
 
-    private int count;
-    private List<User> users = new ArrayList<>();
+    private static int count;
+    private static List<Staff> users = new ArrayList<>();
 
 
     @Override
-    public User save(User user){
+    public Staff save(Staff user){
         users.add(user);
         count++;
         return user;
@@ -25,7 +25,7 @@ public class UserRepositoryImpl  implements  UserRepository{
     }
 
     @Override
-    public void delete(User user){
+    public void delete(Staff user){
         users.remove(user);
         count--;
 
@@ -38,8 +38,8 @@ public class UserRepositoryImpl  implements  UserRepository{
     }
 
     @Override
-    public User findById(String id) {
-        for (User user : users) {
+    public Staff findById(String id) {
+        for (Staff user : users) {
             if (id.equals(user.getId())) {
                 return user;
             }
