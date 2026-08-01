@@ -5,6 +5,7 @@ public class SaleItem {
     private Medicine medicne;
     private int quantity;
     private double sellingPriceSale;
+    private String medicineId;
 
     public Medicine getMedicne(){
         return medicne;
@@ -28,5 +29,13 @@ public class SaleItem {
 
     public void setSellingPriceSale(double sellingPriceSale) {
         this.sellingPriceSale = sellingPriceSale;
+    }
+
+    public String getMedicineId(){
+        return medicineId;
+    }
+
+    public void setMedicineId(String medicineId) {
+        this.medicineId = medicineId;
     }
 }

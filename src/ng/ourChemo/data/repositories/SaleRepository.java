@@ -8,4 +8,5 @@ public interface SaleRepository {
     Sale save(Sale sale);
     List<Sale> findAll();
     Sale findById(String saleId);
+    void deleteAll();
 }

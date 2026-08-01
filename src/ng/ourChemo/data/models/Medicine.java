@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 public class Medicine {
 
+    private String name;
+
     private String id;
 
     private String brandName;
@@ -96,10 +98,20 @@ public class Medicine {
     }
 
     public int getQuantityInStock(){
+
         return quantityInStock;
     }
 
     public void setQuantityInStock(int quantityInStock){
         this.quantityInStock = quantityInStock;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
 }

@@ -9,5 +9,7 @@ public interface MedicineRepository {
     List<Medicine> findAll();
     Medicine findById(String id);
     void updateStock(String id,int newStock);
+    Medicine save(Medicine medicine);
+    void deleteAll();
 
 }

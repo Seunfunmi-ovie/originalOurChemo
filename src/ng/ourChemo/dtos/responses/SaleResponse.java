@@ -8,11 +8,8 @@ public class SaleResponse {
     private String saleId;
     private LocalDateTime dateTime;
     private String processedBy;
-    private List<String> items = new ArrayList<>();
+    private List<SaleItemResponse> items = new ArrayList<>();
     private double amount;
-
-
-
 
     public String getSaleId() {
         return saleId;
@@ -38,19 +35,19 @@ public class SaleResponse {
         this.processedBy = processedBy;
     }
 
-    public List<String> getItems() {
+    public List<SaleItemResponse> getItems() {
         return items;
     }
 
-    public void setItems(List<String> items) {
+    public void setItems(List<SaleItemResponse> items) {
         this.items = items;
     }
 
-    public double getAmount(){
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount){
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 }
