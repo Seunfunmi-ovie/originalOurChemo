@@ -10,6 +10,7 @@ import ng.ourChemo.dtos.responses.DeleteMedicineResponse;
 import ng.ourChemo.dtos.responses.UpdateMedicineResponse;
 
 public class MedicineServiceImpl implements MedicineService {
+
     private final MedicineRepository medicineRepository;
 
     public MedicineServiceImpl(MedicineRepository medicineRepository) {
@@ -23,7 +24,7 @@ public class MedicineServiceImpl implements MedicineService {
         medicine.setUnitPrice(request.getPrice());
         medicine.setQuantityInStock(request.getInitialStock());
 
-        Medicine savedMedicine = medicineRepository.save(medicine);
+        medicineRepository.save(medicine);
 
         AddMedicineResponse response = new AddMedicineResponse();
         response.setMessage("Medicine Successfully Added");
@@ -37,7 +38,7 @@ public class MedicineServiceImpl implements MedicineService {
     }
 
     @Override
-    public DeleteMedicineResponse deleteDrug(DeleteMedicineRequest REQUEST) {
+    public DeleteMedicineResponse deleteDrug(DeleteMedicineRequest request) {
         return null;
     }
 }

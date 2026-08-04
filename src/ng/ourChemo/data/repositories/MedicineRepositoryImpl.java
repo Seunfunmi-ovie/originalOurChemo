@@ -1,27 +1,25 @@
 package ng.ourChemo.data.repositories;
 
 import ng.ourChemo.data.models.Medicine;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class MedicineRepositoryImpl  implements MedicineRepository {
+public class MedicineRepositoryImpl implements MedicineRepository {
 
     private final List<Medicine> medicineList = new ArrayList<>();
-    private static int count;
+    private int count = 0;
+
 
     @Override
     public List<Medicine> findAll() {
         return medicineList;
     }
 
-
     @Override
     public Medicine findById(String id) {
         for (Medicine medicine : medicineList) {
             if (medicine.getId().equalsIgnoreCase(id)) {
                 return medicine;
-
             }
         }
         return null;
@@ -33,15 +31,15 @@ public class MedicineRepositoryImpl  implements MedicineRepository {
         if (medicine != null) {
             medicine.setQuantityInStock(newStock);
         }
-
     }
 
     @Override
     public Medicine save(Medicine medicine) {
         if (medicine.getId() == null) {
-            medicine.setId(String.valueOf(medicineList.size() + 1));
+            medicine.setId((count + 1) + "");
         }
         medicineList.add(medicine);
+        count++;
         return medicine;
     }
 
@@ -49,6 +47,5 @@ public class MedicineRepositoryImpl  implements MedicineRepository {
     public void deleteAll() {
         medicineList.clear();
         count = 0;
-
     }
 }
